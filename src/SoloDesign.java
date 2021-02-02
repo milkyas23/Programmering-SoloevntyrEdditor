@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SoloDesign {
     public static void main(String[] args) {
@@ -9,7 +11,14 @@ public class SoloDesign {
         frame.setVisible(true);
     }
 
-    public SoloDesign() {}
+    public SoloDesign() {
+        startNext.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Story.setText(SoloModel.getStory(1));
+            }
+        });
+    }
     public SoloDesign(JTextArea story) {
         Story = story;
     }
@@ -23,5 +32,6 @@ public class SoloDesign {
     private JButton Link1;
     private JButton Link2;
     public JPanel Panel;
+    private JButton startNext;
 
 }
