@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class SoloDesign {
     public static void main(String[] args) {
@@ -15,7 +16,11 @@ public class SoloDesign {
         startNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Story.setText(SoloModel.getStory(1));
+                try {
+                    Story.setText(SoloModel.getStory(1));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -28,7 +33,7 @@ public class SoloDesign {
         Link2 = Link2;
     }
 
-    private JTextArea Story;
+    public JTextArea Story;
     private JButton Link1;
     private JButton Link2;
     public JPanel Panel;

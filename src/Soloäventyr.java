@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
 
 /**
  * Here in this class SoloDesign from GUI form is introduced.
@@ -32,27 +34,21 @@ public class Soloäventyr{
      */
     public static void main(String[] args) {
         Soloäventyr game = new Soloäventyr();
-        String password = "password";
-
-        try {
 
 
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/te18? " +
-                            "allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC",
-                    "username", password);
 
             game.CharStreamExample();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
+
+
+
     }
 
     private void CharStreamExample() {
 
     }
-    public void actionPerformed(ActionEvent actionEvent) {
-        Story.setText(SoloModel.getStory(1));
+    public void actionPerformed(ActionEvent actionEvent) throws SQLException {
+        view.Story.setText(model.getStory(1));
     }
 }
 
