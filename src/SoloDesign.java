@@ -1,7 +1,6 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class SoloDesign {
     public static void main(String[] args) {
@@ -13,30 +12,22 @@ public class SoloDesign {
     }
 
     public SoloDesign() {
-        startNext.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                try {
-                    Story.setText(SoloModel.getStory(1));
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+
+
     }
     public SoloDesign(JTextArea story) {
         Story = story;
     }
 
     public SoloDesign(JButton link1) {
-        Link1 = link1;
-        Link2 = Link2;
+        JA = link1;
+        NEJ = NEJ;
     }
 
     public JTextArea Story;
-    private JButton Link1;
-    private JButton Link2;
+    public JButton JA;
+    public JButton NEJ;
     public JPanel Panel;
-    private JButton startNext;
+    public JButton startNext;
 
 }

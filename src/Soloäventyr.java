@@ -1,5 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,6 +25,34 @@ public class Soloäventyr{
         view = new SoloDesign();
         model = new SoloModel();
         frame.add(view.Panel);
+        view.startNext.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try {
+                    view.Story.setText(SoloModel.getStory(model.currentRoom));
+                    model.currentRoom++;
+                    //System.out.println(model.currentRoom);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        view.JA.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent componentEvent) {
+                try {
+                    view.Story.setText(SoloModel.getStory(model.currentRoom));
+                    model.currentRoom++;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                super.componentResized(componentEvent);
+            }
+        });
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -35,20 +66,22 @@ public class Soloäventyr{
     public static void main(String[] args) {
         Soloäventyr game = new Soloäventyr();
 
-
-
             game.CharStreamExample();
-
-
-
 
     }
 
     private void CharStreamExample() {
 
     }
+
+    /**
+     * Here button start/next is defined and functional.
+     * @param actionEvent
+     * @throws SQLException
+     */
     public void actionPerformed(ActionEvent actionEvent) throws SQLException {
-        view.Story.setText(model.getStory(1));
+        view.Story.setText(model.getStory(1) + " " + model.getStory(2));
+
     }
 }
 

@@ -8,20 +8,20 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="8b60e" class="javax.swing.JButton" binding="Link1">
+      <component id="8b60e" class="javax.swing.JButton" binding="JA">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Link1"/>
+          <text value="JA"/>
         </properties>
       </component>
-      <component id="ba199" class="javax.swing.JButton" binding="Link2">
+      <component id="ba199" class="javax.swing.JButton" binding="NEJ">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Link2"/>
+          <text value="NEJ"/>
         </properties>
       </component>
       <component id="80673" class="javax.swing.JTextArea" binding="Story">
@@ -30,7 +30,12 @@
             <preferred-size width="150" height="50"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-13355980"/>
+          <font name="Courier New" size="26" style="2"/>
+          <foreground color="-1"/>
+          <lineWrap value="true"/>
+        </properties>
       </component>
       <component id="d60bd" class="javax.swing.JButton" binding="startNext">
         <constraints>
