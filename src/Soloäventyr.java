@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -18,7 +19,7 @@ public class Soloäventyr{
     SoloModel model;
 
     /**
-     * In this constructor Soloäventyr is Designed with JFrame
+     * In this constructor Soloäventyr is Designed with JFrame also view and model are introduced to recognise each other.
      */
     public Soloäventyr() {
         JFrame frame = new JFrame("SoloDesign");
@@ -29,7 +30,21 @@ public class Soloäventyr{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    view.Story.setText(SoloModel.getStory(model.currentRoom));
+                    ArrayList<Link>links = model.getLinks(model.currentRoom);
+
+                    Link linl1=links.get(0);
+                    view.JA.setText(linl1.getDescription());
+                    Link linl2 = null;
+                    if (links.size() > 1) {
+                        linl2 = links.get(1);
+                        view.NEJ.setText(linl2.getDescription());
+                    } else{
+                        view.NEJ.setText("-");
+                    }
+
+                    view.Story.setText(model.getStory(model.currentRoom));
+
+
                     model.currentRoom++;
                     //System.out.println(model.currentRoom);
                 } catch (SQLException e) {
@@ -38,20 +53,7 @@ public class Soloäventyr{
             }
         });
 
-        view.JA.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent componentEvent) {
-                try {
-                    view.Story.setText(SoloModel.getStory(model.currentRoom));
-                    model.currentRoom++;
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                super.componentResized(componentEvent);
-            }
-        });
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
