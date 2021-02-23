@@ -34,10 +34,13 @@ public class Soloäventyr{
 
                     Link linl1=links.get(0);
                     view.JA.setText(linl1.getDescription());
+                    view.JA.setName(String.valueOf(linl1.getTarget_id()));
+
                     Link linl2 = null;
                     if (links.size() > 1) {
                         linl2 = links.get(1);
                         view.NEJ.setText(linl2.getDescription());
+                        view.NEJ.setName(String.valueOf(linl2.getTarget_id()));
                     } else{
                         view.NEJ.setText("-");
                     }
@@ -52,9 +55,79 @@ public class Soloäventyr{
                 }
             }
         });
+        view.JA.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                model.currentRoom = Integer.parseInt(view.JA.getName());
+                ArrayList<Link>links = null;
+                try {
+                    links = model.getLinks(model.currentRoom);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+                if (links.size() == 0) {
+
+                    return;
+                }
+
+                Link linl1=links.get(0);
+                view.JA.setText(linl1.getDescription());
+                view.JA.setName(String.valueOf(linl1.getTarget_id()));
+
+                Link linl2 = null;
+                if (links.size() > 1) {
+                    linl2 = links.get(1);
+                    view.NEJ.setText(linl2.getDescription());
+                    view.NEJ.setName(String.valueOf(linl2.getTarget_id()));
+                } else{
+                    view.NEJ.setText("-");
+                }
+
+                try {
+                    view.Story.setText(model.getStory(model.currentRoom));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        view.NEJ.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                model.currentRoom = Integer.parseInt(view.NEJ.getName());
+                ArrayList<Link>links = null;
+                try {
+                    links = model.getLinks(model.currentRoom);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+                Link linl1=links.get(0);
+                view.JA.setText(linl1.getDescription());
+                view.JA.setName(String.valueOf(linl1.getTarget_id()));
+
+                Link linl2 = null;
+                if (links.size() > 1) {
+                    linl2 = links.get(1);
+                    view.NEJ.setText(linl2.getDescription());
+                    view.NEJ.setName(String.valueOf(linl2.getTarget_id()));
+                } else{
+                    view.NEJ.setText("-");
+                }
+
+                try {
+                    view.Story.setText(model.getStory(model.currentRoom));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
 
 
+
+
+            }
+        });
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
