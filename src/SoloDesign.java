@@ -13,8 +13,8 @@ public class SoloDesign {
 
     public SoloDesign() {
 
-
     }
+
     public SoloDesign(JTextArea story) {
         Story = story;
     }
